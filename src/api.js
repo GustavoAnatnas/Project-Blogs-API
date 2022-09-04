@@ -1,9 +1,11 @@
 const express = require('express');
 const loginController = require('./controllers/loginController');
-const loginVerification = require('./middlewares/loginVerification');
 const userController = require('./controllers/userController');
+const categoryController = require('./controllers/categoryController');
+const loginVerification = require('./middlewares/loginVerification');
 const userVer = require('./middlewares/userVerification');
 const tokenVer = require('./middlewares/tokenVerification');
+const categoryVer = require('./middlewares/categoryVerification');
 // ...
 
 const app = express();
@@ -20,6 +22,11 @@ userVer.validatePassword,
 userVer.checkingEmail,
 userVer.alreadyUsedEmail,
 userController.create);
+
+app.post('/categories',
+tokenVer.validateToken, 
+categoryVer.validateCategory,
+categoryController.create);
 
 app.get('/user', 
 tokenVer.validateToken, 
