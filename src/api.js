@@ -1,6 +1,7 @@
 const express = require('express');
 const loginController = require('./controllers/loginController');
 const userController = require('./controllers/userController');
+const postController = require('./controllers/postController');
 const categoryController = require('./controllers/categoryController');
 const loginVerification = require('./middlewares/loginVerification');
 const userVer = require('./middlewares/userVerification');
@@ -39,6 +40,10 @@ userController.findById);
 app.get('/categories',
 tokenVer.validateToken,
 categoryController.findAll);
+
+app.get('/post',
+tokenVer.validateToken,
+postController.getPosts);
 
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
