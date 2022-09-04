@@ -36,6 +36,10 @@ app.get('/user/:id',
 tokenVer.validateToken, 
 userController.findById);
 
+app.get('/categories',
+tokenVer.validateToken,
+categoryController.findAll);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
